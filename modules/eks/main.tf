@@ -47,3 +47,11 @@ resource "aws_security_group_rule" "dev-eks_ingress_http" {
   cidr_blocks = ["0.0.0.0/0"]
   security_group_id = module.eks.cluster_security_group_id
 }
+
+output "cluster_id" {
+  value = module.eks.cluster_id
+}
+
+output "eks_managed_node_groups" {
+  value = module.eks.eks_managed_node_groups
+}
