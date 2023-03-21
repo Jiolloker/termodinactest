@@ -39,3 +39,8 @@ variable "vpc_security_group_ids" {
   type        = list(string)
   /*default = []*/
 }
+
+variable "vpc_id" {
+  description = "VPC ID to launch the instance in"
+  type        = string
+}
