@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Load environment variables
-        run: echo $(cat .env | xargs) > .env
-
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -21,8 +18,8 @@ jobs:
 
       - name: Build Docker image
         env:
-          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          IMAGE_NAME: mega123
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
@@ -37,8 +34,8 @@ jobs:
 
       - name: Push Docker image
         env:
-          IMAGE_NAME: ${{ env.IMAGE_NAME }}
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          IMAGE_NAME: mega123
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
